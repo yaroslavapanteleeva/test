@@ -1,0 +1,7 @@
+.list-group-item {
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
