@@ -1,23 +1,25 @@
-import { act } from "react-dom/test-utils";
-import { ADD_NOTE, ADD_NOTE_ERR } from "../actions/noteActions";
 
-const initState = {
-    notes: {}
+import { ADD_NOTE, ADD_NOTE_ERR, REMOVE_NOTE, REMOVE_NOTE_ERR } from "../actions/noteActions";
+
+const initilState = {
+    notes: []
 }
 
-export const noteReducer = (state = initState, action) => {
-    console.log(action.type)
+export const noteReducer = (state = initilState, action) => {
     switch (action.type) {
         case ADD_NOTE: 
-            console.log('Add note', action.note);
+            console.log('Add note');
             return {...state, note: action.payload}
         case ADD_NOTE_ERR: 
-            console.log('Add error note', action.err);
-            return {...state, err: action.payload}
+            console.log('Add error note');
+            return state
+        case REMOVE_NOTE:
+            console.log('remove note')
+            return state
+        case REMOVE_NOTE_ERR:
+            return state
         default:
-            console.log('error')
-            console.log(action.type)
-            return state 
+            return state
  
     }
     

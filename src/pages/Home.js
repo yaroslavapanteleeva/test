@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { Dashboard } from '../components/Dashboard'
-import { Navbar } from '../components/Navbar'
-import { SignIn } from '../components/SignIn'
-import { SignUp } from '../components/SignUp'
+import  Navbar  from '../components/Navbar'
+import  SignIn  from '../components/SignIn'
+import SignUp  from '../components/SignUp'
+import  Todo from './Todo'
 
 export const Home = () => {
     return (
         <Fragment>
           <Navbar />
-          <div className="container pt-4">
+          <div className="container">
                 <Switch>
-                    <Route path="/" exact component={Dashboard} />
+                    <Route path="/" exact component={Todo} />
                     <Route path="/login" exact component={SignIn} />
                     <Route path="/register" exact component={SignUp} />
                 </Switch>  

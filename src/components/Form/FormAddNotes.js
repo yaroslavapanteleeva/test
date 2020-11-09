@@ -1,18 +1,24 @@
 import React, {useState} from 'react';
-import { connect } from 'react-redux';
+import {useDispatch } from 'react-redux';
 import {addNote} from '../../redux/actions/noteActions'
 
 import './Form.scss'
 
 const FormAddNotes = () => {
+    const dispatch = useDispatch()
     const [value, setValue] = useState('')
 
     
   
     const handleSubmit = e => {
         e.preventDefault()
-        addNote(value)
+        const notes = {
+            title: value
+        }
+        dispatch(addNote(notes))
+        console.log(notes)
         setValue('')
+    
     }
     return (
         <form className="form-add-notes" onSubmit={handleSubmit}>
@@ -20,6 +26,7 @@ const FormAddNotes = () => {
                 type="text"
                 className="form-control"
                 placeholder="Введите название списка"
+                value={value}
                 onChange= {e => {setValue(e.target.value)}}
             />
             <button type="submit" className="btn btn-warning">Добавить список</button>
@@ -28,10 +35,5 @@ const FormAddNotes = () => {
     
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addNote: (note) => dispatch(addNote(note))
-    }
-}
 
-export default connect(null, mapDispatchToProps)(FormAddNotes)
+export default FormAddNotes;

@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { signIn } from '../redux/actions/authActions';
 
-export const SignIn = () => {
+const SignIn = ({uid}) => {
     const [user, setUser] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -8,10 +11,19 @@ export const SignIn = () => {
     const [passwordError, setPasswordError] = useState('')
     const [hasAccount, setHasAccount] = useState(false)
 
+    const  dispatch = useDispatch()
+
     const handleSubmit = (e) => {
         e.preventDefault()
-       
+        const users = {
+            email: email,
+            password: password
+        }
+        dispatch(signIn(users))
+        console.log(users)
     }
+
+    if (uid) return <Redirect to="/"/>
 
     return (
         <form autoComplete="off" onSubmit={handleSubmit}>
@@ -43,3 +55,13 @@ export const SignIn = () => {
         </form>
     )
 }
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    const uid = state.firebase.auth.uid
+    return {
+        uid: uid
+    }
+}
+
+export default connect(mapStateToProps)(SignIn)

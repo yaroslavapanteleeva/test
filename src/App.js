@@ -1,20 +1,21 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch}  from 'react-router-dom'
 import { Todo } from './pages/Todo';
+import {Home} from './pages/Home'
 
 
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <section className="home">
-        <Home /> 
-      </section> */}
-      <section className="todo-list">
-        <Switch>
-          <Route path="/" exact component={Todo} />
-        </Switch>
+      <section className="home">
+        <Home />
       </section>
+      {/* <section className="todo-list">
+        <Switch>
+          <Route path="/" exact component={Todo} /> 
+        </Switch>
+      </section> */}
       
 
       
