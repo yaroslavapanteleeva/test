@@ -1,15 +1,22 @@
 import React from 'react'
-import FormAddNotes from '../Form/FormAddNotes'
+import { connect } from 'react-redux'
 import FormAddTasks from '../Form/FormAddTasks'
+import Tasks from '../Tasks/Tasks'
 
 import './Content.scss'
 
-export const Content = () => {
+ const Content = ({note, notes}) => {
+    console.log(note.id)
+    console.log(notes)
     return (
         <div className="content">
-            <h1>Hello</h1>
-            <FormAddTasks />
+            <h1>{note.title}</h1>
+            <Tasks lists={note}/>
+            <FormAddTasks note={note} notes={notes}/>
         </div>
         
     )
 }
+
+
+export default Content
